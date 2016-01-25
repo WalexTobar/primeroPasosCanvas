@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>3rd ejemplo canvas Rect&aacute;ngulos</title>
+<script>
+	//Recibe un identificador del elemento canvas y carga el canvas
+	//Devuelve el contexto del canvas o False si no se ha conseguido
+	function cargarContextoCanvas(idCanvas) {
+		var elemento = document.getElementById(idCanvas);
+
+		if (elemento && elemento.getContext) {
+			var contexto = elemento.getContext('2d');
+			if (contexto) {
+				return contexto;
+			}
+		}
+		
+		return FALSE;
+	}
+
+	window.onload = function() {
+		//recibimos el elemento canvas
+		var contexto = cargarContextoCanvas('micanvas');
+		if (contexto) {
+			//si tengo el contexto
+
+			//cambio el color de relleno de los rectángulos 
+			contexto.fillStyle = '#cc0000';
+
+			for (var i = 0; i <= 100; i+=10) {
+				//fillRect(x, y, width, height) dibuja relleno de color
+				contexto.fillRect(i, i, 5, 5);
+			};
+
+			// Cambio el color de la linea de borde del rectángulo
+			contexto.strokeStyle = '#ff9933';
+			for (var i = 100; i >= 0; i-=10) {
+				//strokeRect(x, y, width, height) dibuja el borde de un rectángulo 
+				contexto.strokeRect(i, 100-i, 5, 5);
+			};
+
+		};
+	}
+
+
+	function borrar_parcial() {
+		var contexto = cargarContextoCanvas('micanvas');
+		if (contexto) {
+			//ClearRect(x, y, width, height) borra un área rectangular del canvas dejándola transparente
+			contexto.clearRect(60,0,42,150);
+		};
+	}
+</script>
+</head>
+<body bgcolor="#ffff99">
+<canvas  id="micanvas" width= "150" height= "150">
+Contenido que sólo verán los usuarios que no soportan canvas en su navegador. Usa una versión
+moderna de Firefox, Chrome, Safari, Opera... casi todos los navegadores excepto Explorer son
+compatibles con Canvas.
+</canvas>
+<a href="#" onclick="borrar_parcial()">Borrado parcial</a>
+</body>
+</html>
