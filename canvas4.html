@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>4th Ejercicio de Cambas Aleatorio</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<script>
+	function cargarContextoCanvas(idcanvas) {
+
+		var elemento = document.getElementById(idcanvas);
+		if (elemento && elemento.getContext) {
+			var contexto = elemento.getContext('2d');
+			if (contexto) {
+				return	contexto;
+			};
+		};
+		return FALSE;
+	}
+    	//variable global contexto sin inicializar
+	var contexto;
+
+	window.onload = function() {
+		//Recibimos el elemento canvas
+		contexto = cargarContextoCanvas('micanvas');
+		if (contexto) {
+			//si tengo el contexto, defino la función periódica.
+			setInterval("cuadradosAleatorios(contexto)", 300);
+		};
+	}
+	//función para generar un numero Aleatorio
+	function aleatorio(inferior,superior) {
+     numPosibilidades = superior - inferior
+     aleat = Math.random() * numPosibilidades
+     aleat = Math.floor(aleat)
+     return parseInt(inferior) + aleat
+    }
+
+
+	// función para generar los cuadritos aletorios
+
+	function cuadradosAleatorios() {
+		for (var i = 0; i < 300; i+=10) {
+			for (var j = 0; j < 250; j+=10) { 
+				contexto.fillStyle = colorAleatorio();
+				contexto.fillRect(i, j, 10, 10)
+			}
+		}
+	}
+
+    //función para generar el color 
+	function colorAleatorio() {
+     return "rgb(" + aleatorio(0,255) + "," + aleatorio(0,255) + "," + aleatorio(0,255) + ")"
+    }
+
+</script>
+<body>
+<canvas id= "micanvas" width = "300px" height = "250px">
+	
+</canvas>
+</body>
+</html>
