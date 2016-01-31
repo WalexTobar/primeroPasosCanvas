@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8"/>
+	<title>5th Ejemplo caminos con canvas closePath() y stroke()</title>
+<script>
+	function cargarContextoCanvas (idcanvas) {
+
+		var elemento = document.getElementById(idcanvas);
+         if (elemento && elemento.getContext) {
+         	var contexto = elemento.getContext("2d");
+         	if (contexto) {
+         		return contexto;
+         	}
+         }
+         return FALSE;
+	}
+
+	window.onload = function() {
+		// recibo el contxto de canvas
+		var ctx = cargarContextoCanvas("micanvas");
+		if (ctx) {
+			ctx.beginPath();
+			ctx.moveTo(1, 1);
+			for (var i = 1; i < 100; i+=5) {
+				if ((i%2)!= 0) {
+					ctx.lineTo(i+5,i);
+				} else{
+					ctx.lineTo(i,i+5);
+				}
+			}
+			ctx.lineTo(1, i);
+			ctx.closePath();
+			ctx.stroke();
+		}
+
+		//otro elemento basado en el mismo codigo
+		var ctx = cargarContextoCanvas("micanvas2");
+		if (ctx) {
+			ctx.beginPath();
+			ctx.moveTo(1, 1);
+			for (var i = 1; i < 100; i+=5) {
+				if ((i%2) != 0) {
+					ctx.lineTo(i+5,i);
+				} else{
+					ctx.moveTo(i,i+5);
+				}
+			}
+			ctx.stroke();
+		}
+
+	}
+</script>
+</head>
+<body>
+   <canvas id="micanvas" width="150" height="150">
+     Recicla tu browser, POR FAVOR!!
+   </canvas>
+<br>
+<br>
+    <canvas id="micanvas2" width="150" height="150">
+      POR FAVOR, Recicla tu navegador!!
+    </canvas>
+
+</body>
+</html>
