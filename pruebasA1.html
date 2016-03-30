@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+	<title>prueba by Alex</title>
+<script>
+	function cargarContextoCanvas(Idcanvas) {
+		var elemento = document.getElementById('')(Idcanvas);
+		if (elemento && elemento.getContext) {
+			var contexto = elemento.getContext('2d');
+		} else {
+			return contexto;
+		}
+		return FALSE;
+	}
+
+	//CUANDO LA VENTA SE CARGUE
+	window.load = function() {
+		//recibimos el contextp con las funcion cargarContextoCanvas
+		var ctx = cargarContextoCanvas("micanvas");
+		if (ctx) {
+			ctx.beginPath();
+		}
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>
